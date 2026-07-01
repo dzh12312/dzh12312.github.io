@@ -85,7 +85,7 @@ const CONFIG = {
           },
           {
             heading: 'Interests',
-            items: ['Photography', 'Painting', 'Go-kart']
+            items: ['Painting', 'Football'，'Valorant']
           }
         ]
       },
@@ -93,23 +93,15 @@ const CONFIG = {
         sections: [
           {
             heading: 'Tech',
-            items: [
-              'Python',
-              'C++',
-              'Unity',
-              'Godot',
-              'Matlab',
-              'SPSS',
-              'SQL'
-            ]
+            items: ['C','C++']
           }
         ]
       },
       {
         sections: [
           {
-            heading: 'Reading list（寻找书友中……）',
-            items: ['《人间词话》', '《人间草木》', '《百年孤独》']
+            heading: 'Reading list',
+            items: ['《月亮与六便士》', '《CSAPP》', '《文化苦旅》']
           }
         ]
       }
@@ -136,13 +128,11 @@ const CONFIG = {
     internship: {
       title: '实习经验',
       items: [
-        '家里厨房暑期优秀实习生',
-        '深度参与撸猫遛狗项目，实习认证时长 100h+'
-      ]
-    },
+        '被窝优秀实习生','深度参与无畏契约项目，实习认证时长 500h+']
+    }，
     social: {
       title: '社会实践',
-      items: ['2008 年感动中国人物得主', '被窝测评大师']
+      items: ['熬夜冠军王', '美食达人']
     }
   }
 }
