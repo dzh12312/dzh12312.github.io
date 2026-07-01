@@ -85,7 +85,7 @@ const CONFIG = {
           },
           {
             heading: 'Interests',
-            items: ['Painting', 'Football'，'Valorant']
+            items: ['Painting', 'Football', 'Valorant']
           }
         ]
       },
@@ -129,7 +129,7 @@ const CONFIG = {
       title: '实习经验',
       items: [
         '被窝优秀实习生','深度参与无畏契约项目，实习认证时长 500h+']
-    }，
+    },
     social: {
       title: '社会实践',
       items: ['熬夜冠军王', '美食达人']
