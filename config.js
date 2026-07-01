@@ -4,17 +4,17 @@
  */
 const CONFIG = {
   meta: {
-    title: '腾小飞 · 个人名片',
+    title: '邓子豪 · 个人名片',
     description:
-      '腾小飞 — 复旦大学腾飞书院工科学生个人名片：简介、技能与兴趣、科研、竞赛、实习与社会实践。',
+      '邓子豪 — 复旦大学腾飞书院工科学生个人名片：简介、技能与兴趣、科研、竞赛、实习与社会实践。',
     lang: 'zh-CN'
   },
 
   /** 顶栏与页脚文案 */
   site: {
-    headerName: '腾小飞',
-    footerName: '腾小飞',
-    footerOrg: '复旦大学腾飞书院',
+    headerName: '腾小飞~邓子豪',
+    footerName: '邓子豪',
+    footerOrg: '复旦大学腾飞书院 计算与智能创新学院',
     footerNote: '本页为 github.io 静态部署教程示例 · 左右滑动或方向键切换'
   },
 
@@ -25,8 +25,8 @@ const CONFIG = {
   slides: [
     { id: 'home', enabled: true, navLabel: '主页', navAriaLabel: '首页' },
     { id: 'skills', enabled: true, navLabel: '技能', navAriaLabel: '技能与兴趣' },
-    { id: 'research', enabled: true, navLabel: '科研经历', navAriaLabel: '科研经历' },
-    { id: 'competition', enabled: true, navLabel: '竞赛获奖', navAriaLabel: '竞赛获奖' },
+    { id: 'research', enabled: false, navLabel: '科研经历', navAriaLabel: '科研经历' },
+    { id: 'competition', enabled: false, navLabel: '竞赛获奖', navAriaLabel: '竞赛获奖' },
     { id: 'internship', enabled: true, navLabel: '实习经验', navAriaLabel: '实习经验' },
     { id: 'social', enabled: true, navLabel: '社会实践', navAriaLabel: '社会实践' }
   ],
@@ -40,13 +40,13 @@ const CONFIG = {
   profile: {
     greetingLead: '你好，我是',
     /** 首页大标题里渐变显示的名字 */
-    displayName: '腾小飞',
-    locationLine: '复旦大学腾飞书院',
-    intro: '工科学生一枚；本页是 GitHub Pages 静态个人名片的示例，展示简介与经历片段。',
+    displayName: '邓子豪',
+    locationLine: '复旦大学腾飞书院-计算与智能创新学院',
+    intro: '工科学生一枚~ 计算机科学与技术专业在读。',
     quote: '「永远在腾飞路上！」',
     /** 头像：可把图片放到 assets/ 下，例如 assets/avatar.jpg */
     avatar: 'assets/秘书处_线条.png',
-    avatarAlt: '腾小飞',
+    avatarAlt: '腾小飞~邓子豪',
     aboutTitle: 'About Me',
     /** 右侧「关于我」列表；有 href 时渲染为链接 */
     aboutRows: [
@@ -54,24 +54,24 @@ const CONFIG = {
       { label: '爱好', value: '探索世界' },
       {
         label: 'GitHub',
-        value: 'Tengxiaofei-git',
-        href: 'https://github.com/Tengxiaofei-git'
+        value: 'dzh12312',
+        href: 'https://github.com/dzh12312'
       },
       {
         label: '联系方式',
-        value: 'tengfeimsc@163.com',
-        href: 'mailto:tengfeimsc@163.com'
+        value: '2036034467@qq.com',
+        href: 'mailto:2036034467@qq.com'
       }
     ]
   },
 
   links: {
     /** 右上角「GitHub 仓库」按钮 */
-    repoUrl: 'https://github.com/Tengxiaofei-git/Tengxiaofei-git.github.io',
+    repoUrl: 'https://github.com/dzh12312/dzh12312.github.io',
     repoLabel: 'GitHub 仓库',
     /** 主按钮文案与跳转的幻灯片 id（须为上面 slides 中某一 id） */
-    primaryCtaLabel: '浏览经历',
-    primaryCtaSlideId: 'research'
+    primaryCtaLabel: '浏览技能',
+    primaryCtaSlideId: 'skills'
   },
 
   skills: {
