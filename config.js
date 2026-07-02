@@ -15,7 +15,7 @@ const CONFIG = {
     headerName: '腾小飞~邓子豪',
     footerName: '邓子豪',
     footerOrg: '复旦大学腾飞书院 计算与智能创新学院',
-    footerNote: '本页为 github.io 静态部署教程示例 · 左右滑动或方向键切换'
+    footerNote: '博学而笃志 切问而近思'
   },
 
   /**
