@@ -85,23 +85,23 @@ const CONFIG = {
           },
           {
             heading: 'Interests',
-            items: ['Painting', 'Football', 'Valorant']
+            items: ['Basketball', 'Cooking', 'Homelab', 'Photography', 'Valorant']
           }
         ]
       },
       {
         sections: [
           {
-            heading: 'Tech',
-            items: ['C','C++']
+            heading: 'Programming Language',
+            items: ['C', 'C++', 'Java', 'Assembly Language']
           }
         ]
       },
       {
         sections: [
           {
-            heading: 'Reading list',
-            items: ['《月亮与六便士》', '《CSAPP》', '《文化苦旅》']
+            heading: 'Textbooks',
+            items: ['《高等数学》', '《深入理解计算机系统》', '《数字设计和计算机体系结构》', '《数据结构与算法分析》', '《离散数学》']
           }
         ]
       }
