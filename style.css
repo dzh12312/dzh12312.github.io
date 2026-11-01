@@ -11,7 +11,11 @@ html {
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
+  background: 
+    radial-gradient(1100px 560px at var(--glow-x) -12%, rgb(175 200 218 / .5), transparent 62%),
+    radial-gradient(820px 460px at 92% -6%, rgb(71 112 155 / .10), transparent 58%),
+    var(--bg);
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
 }
