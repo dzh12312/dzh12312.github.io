@@ -30,13 +30,14 @@
   --tw-ink-950: 2 6 23;
 
   /* ===== 卡片与导航投影（完整 box-shadow 字符串）===== */
-  --shadow-card: 0 2px 6px rgb(71 112 155 / 0.14), 0 10px 36px rgb(71 112 155 / 0.30);
-  --shadow-card-dark: 0 10px 40px rgb(0 0 0 / 0.55);
+  --shadow-card: 0 2px 6px rgb(71 112 155 / 0.10), 0 10px 32px rgb(71 112 155 / 0.18);
+  --shadow-card-dark: 0 10px 40px rgb(0 0 0 / 0.45);
 
   /* ===== 底部圆点导航：激活态渐变与阴影 ===== */
   --nav-dot-active-from: #47709b;
   --nav-dot-active-to: #afc8da;
   --nav-dot-active-shadow: 0 8px 24px rgb(71 112 155 / 0.28);
+  --glow-x: 12%;
   --nav-dot-active-shadow-dark: 0 8px 24px rgb(71 112 155 / 0.4);
 
   /* ===== 旧版 layout（style.css）与通用语义 ===== */
