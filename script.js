@@ -194,6 +194,35 @@ const applyConfig = () => {
           a.rel = 'noopener noreferrer'
         }
         dd.appendChild(a)
+      } else if (row.copy) {
+        const text = typeof row.copy === 'string' ? row.copy : (row.value || '')
+        const btn = document.createElement('button')
+        btn.type = 'button'
+        btn.title = '点击复制'
+        btn.className =
+          'cursor-pointer border-0 bg-transparent p-0 text-left font-[inherit] text-inherit hover:underline'
+        btn.textContent = row.value || ''
+        btn.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(text)
+          } catch (err) {
+            const ta = document.createElement('textarea')
+            ta.value = text
+            ta.style.position = 'fixed'
+            ta.style.opacity = '0'
+            document.body.appendChild(ta)
+            ta.select()
+            document.execCommand('copy')
+            ta.remove()
+          }
+          btn.textContent = '已复制 ✓'
+          btn.disabled = true
+          setTimeout(() => {
+            btn.textContent = row.value || ''
+            btn.disabled = false
+          }, 1500)
+        })
+        dd.appendChild(btn)
       } else {
         dd.textContent = row.value || ''
       }
