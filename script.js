@@ -198,7 +198,7 @@ const applyConfig = () => {
         const text = typeof row.copy === 'string' ? row.copy : (row.value || '')
         const btn = document.createElement('button')
         btn.type = 'button'
-        btn.title = '点击复制'
+        btn.title = '复制'
         btn.className =
           'cursor-pointer border-0 bg-transparent p-0 text-left font-[inherit] text-inherit hover:underline'
         btn.textContent = row.value || ''
