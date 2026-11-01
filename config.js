@@ -58,7 +58,12 @@ const CONFIG = {
         href: 'https://github.com/dzh12312'
       },
       {
-        label: '联系方式',
+        label: '电话',
+        value: '+86 155 5005 9565',
+        copy: '15550059565'
+      },
+      {
+        label: '邮箱',
         value: '2036034467@qq.com',
         href: 'mailto:2036034467@qq.com'
       }
