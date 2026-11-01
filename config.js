@@ -6,15 +6,15 @@ const CONFIG = {
   meta: {
     title: '邓子豪 · 个人名片',
     description:
-      '邓子豪 — 复旦大学腾飞书院工科学生个人名片：简介、技能与兴趣、科研、竞赛、实习与社会实践。',
+      '邓子豪 复旦大学 腾飞书院 计算与智能创新学院 本科生 个人名片：简介、技能与兴趣、科研、竞赛、实习与社会实践。',
     lang: 'zh-CN'
   },
 
   /** 顶栏与页脚文案 */
   site: {
-    headerName: '腾小飞~邓子豪',
+    headerName: 'Deng Zihao',
     footerName: '邓子豪',
-    footerOrg: '复旦大学腾飞书院 计算与智能创新学院',
+    footerOrg: '复旦大学 腾飞书院 计算与智能创新学院',
     footerNote: '博学而笃志 切问而近思'
   },
 
@@ -38,19 +38,19 @@ const CONFIG = {
   },
 
   profile: {
-    greetingLead: '你好，我是',
+    greetingLead: 'Hi，我是 ',
     /** 首页大标题里渐变显示的名字 */
     displayName: '邓子豪',
-    locationLine: '复旦大学腾飞书院-计算与智能创新学院',
-    intro: '工科学生一枚~ 计算机科学与技术专业在读。',
-    quote: '「永远在腾飞路上！」',
+    locationLine: '复旦大学 腾飞书院 计算与智能创新学院',
+    intro: '工科学生一枚 计算机科学与技术专业在读',
+    quote: '「永远在路上！」',
     /** 头像：可把图片放到 assets/ 下，例如 assets/avatar.jpg */
     avatar: 'assets/头像1.jpg',
     avatarAlt: '腾小飞~邓子豪',
     aboutTitle: 'About Me',
     /** 右侧「关于我」列表；有 href 时渲染为链接 */
     aboutRows: [
-      { label: '年龄', value: '永远的 18 岁' },
+      { label: '年龄', value: '19 岁' },
       { label: '爱好', value: '探索世界' },
       {
         label: 'GitHub',
