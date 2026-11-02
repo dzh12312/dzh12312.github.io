@@ -9,9 +9,19 @@ const slideJumpButtons = document.querySelectorAll('[data-slide-to]:not(.nav-dot
 /** 启用的幻灯片 id 顺序，在 applyConfig 之后赋值 */
 let sectionIds = ['home', 'skills', 'research', 'competition', 'internship', 'social']
 
-/** 单张幻灯片占视口宽度比例；越小左右邻卡露得越多 */
+/** 单张幻灯片占视口宽度比例：手机上占满内容区（不露邻卡），桌面上留出邻卡一角 */
 const narrowQuery = window.matchMedia('(max-width: 640px)')
-const slideRatio = () => (narrowQuery.matches ? 0.92 : 0.86)
+const slideRatio = () => (narrowQuery.matches ? 1 : 0.86)
+
+/** 视口内容区宽度（扣掉左右内边距）。用它来居中，左右留白才真正相等 */
+const contentWidth = () => {
+  if (!cardViewport) {
+    return 0
+  }
+  const style = window.getComputedStyle(cardViewport)
+  const padX = (parseFloat(style.paddingLeft) || 0) + (parseFloat(style.paddingRight) || 0)
+  return Math.max(0, cardViewport.clientWidth - padX)
+}
 
 /** 卡片比轨道略矮的像素，留出上下空隙以便 box-shadow 不被裁切 */
 const CARD_VERTICAL_INSET = 12
@@ -359,8 +369,7 @@ const syncSlideWidths = () => {
   if (!cardViewport || !cardTrack) {
     return
   }
-  const viewW = cardViewport.clientWidth
-  const slidePx = Math.max(200, Math.round(viewW * slideRatio()))
+  const slidePx = Math.max(200, Math.round(contentWidth() * slideRatio()))
   getVisibleSlides().forEach((el) => {
     el.style.flex = '0 0 auto'
     el.style.width = `${slidePx}px`
@@ -395,10 +404,9 @@ const syncTransform = () => {
   if (!slide) {
     return
   }
-  const viewW = cardViewport.clientWidth
   const slideW = slide.offsetWidth
   const slideLeft = slide.offsetLeft
-  const translateX = (viewW - slideW) / 2 - slideLeft
+  const translateX = (contentWidth() - slideW) / 2 - slideLeft
   cardTrack.style.transform = `translateX(${translateX}px)`
 }
 
