@@ -505,6 +505,83 @@ if (cardViewport && cardTrack) {
     })
   })
 
+  /* ---------- 底部胶囊：按住左右滑动切换（页面瞬切） ---------- */
+  const navStrip = document.getElementById('nav-strip')
+
+  const barSwitch = (index) => {
+    if (index < 0 || index >= sectionIds.length || index === currentIndex) {
+      return
+    }
+    applyNavActive(sectionIds[index])      // 1) 先让下面按钮吸附过去
+    requestAnimationFrame(() => {          // 2) 再切页面，且不做平滑过渡
+      cardTrack.classList.add('no-anim')
+      goToIndex(index)
+      requestAnimationFrame(() => cardTrack.classList.remove('no-anim'))
+    })
+  }
+
+  if (navStrip) {
+    const stripDots = () => Array.from(navStrip.querySelectorAll('.nav-dot')).filter((b) => !b.classList.contains('hidden'))
+
+    const indexAtX = (clientX) => {
+      const dots = stripDots()
+      let best = 0
+      let bestDist = Infinity
+      dots.forEach((dot, i) => {
+        const rect = dot.getBoundingClientRect()
+        const dist = Math.abs(clientX - (rect.left + rect.width / 2))
+        if (dist < bestDist) {
+          bestDist = dist
+          best = i
+        }
+      })
+      return best
+    }
+
+    let barDrag = null
+
+    navStrip.addEventListener('touchstart', (e) => {
+      if (!e.touches.length) {
+        return
+      }
+      barDrag = { startX: e.touches[0].clientX, active: false }
+    }, { passive: true })
+
+    navStrip.addEventListener('touchmove', (e) => {
+      if (!barDrag || !e.touches.length) {
+        return
+      }
+      if (!barDrag.active) {
+        if (Math.abs(e.touches[0].clientX - barDrag.startX) < 8) {
+          return
+        }
+        barDrag.active = true
+      }
+      barSwitch(indexAtX(e.touches[0].clientX))
+    }, { passive: true })
+
+    let suppressClickUntil = 0
+
+    // 拖动结束后浏览器可能补一个 click，这里拦掉，避免又走一次平滑切换
+    navStrip.addEventListener('click', (e) => {
+      if (Date.now() < suppressClickUntil) {
+        e.stopPropagation()
+        e.preventDefault()
+      }
+    }, true)
+
+    navStrip.addEventListener('touchend', () => {
+      if (barDrag && barDrag.active) {
+        suppressClickUntil = Date.now() + 400
+      }
+      barDrag = null
+    }, { passive: true })
+
+    navStrip.addEventListener('touchcancel', () => {
+      barDrag = null
+    }, { passive: true })
+  }
+
   slideJumpButtons.forEach((el) => {
     el.addEventListener('click', () => {
       const id = el.getAttribute('data-slide-to')
