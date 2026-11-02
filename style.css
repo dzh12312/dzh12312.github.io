@@ -239,3 +239,67 @@ body {
 .card-shell::-webkit-scrollbar {
   display: none;                    /* 卡内滚动条隐藏（已有等效 class，这里兜底） */
 }
+
+
+/* ===== 紧凑布局：压缩顶部/底部留白，把高度让给卡片 ===== */
+
+/* 顶栏更矮，与卡片之间空隙更小 */
+header > div {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+
+/* 卡片区的上下内边距 */
+#card-viewport {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+/* 卡片与圆点导航之间的容器 */
+main + div {
+  padding-top: 0 !important;
+}
+
+/* 圆点导航整体收紧 */
+#bottom-nav {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+#bottom-nav > div {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+#bottom-nav .inline-flex {
+  padding-top: 0.25rem !important;
+  padding-bottom: 0.25rem !important;
+}
+
+/* 圆点按钮缩到 36px，图标缩到 16px（约原来的 2/3） */
+.nav-dot {
+  height: 2.25rem !important;
+  width: 2.25rem !important;
+}
+.nav-dot__icon {
+  height: 2.25rem !important;
+  width: 2.25rem !important;
+}
+.nav-dot .nav-dot__icon svg {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+.nav-dot.active {
+  width: auto !important;
+  min-width: 2.25rem !important;
+}
+
+/* 页脚：更矮、行距更紧 */
+footer {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.4rem !important;
+}
+footer p {
+  line-height: 1.3 !important;
+}
+footer p + p {
+  margin-top: 0.1rem !important;
+}
