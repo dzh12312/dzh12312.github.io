@@ -27,7 +27,6 @@ const contentWidth = () => {
 const CARD_VERTICAL_INSET = 12
 
 let currentIndex = 0
-let touchStartX = null
 
 const setTextById = (id, text) => {
   const el = document.getElementById(id)
@@ -395,19 +394,31 @@ const syncSlideHeights = () => {
   })
 }
 
+const translateForIndex = (index) => {
+  const slide = getVisibleSlides()[index]
+  if (!slide) {
+    return 0
+  }
+  return (contentWidth() - slide.offsetWidth) / 2 - slide.offsetLeft
+}
+
+/** 相邻两张卡片中心之间的距离（含 gap），用来判断“大部分是哪一张” */
+const slideStep = () => {
+  const slides = getVisibleSlides()
+  if (slides.length < 2) {
+    return contentWidth() || 1
+  }
+  return Math.abs(slides[1].offsetLeft - slides[0].offsetLeft) || contentWidth() || 1
+}
+
 const syncTransform = () => {
   if (!cardViewport || !cardTrack) {
     return
   }
-  const slides = getVisibleSlides()
-  const slide = slides[currentIndex]
-  if (!slide) {
+  if (!getVisibleSlides()[currentIndex]) {
     return
   }
-  const slideW = slide.offsetWidth
-  const slideLeft = slide.offsetLeft
-  const translateX = (contentWidth() - slideW) / 2 - slideLeft
-  cardTrack.style.transform = `translateX(${translateX}px)`
+  cardTrack.style.transform = `translateX(${translateForIndex(currentIndex)}px)`
 }
 
 const syncCarouselLayout = () => {
@@ -504,27 +515,89 @@ if (cardViewport && cardTrack) {
     })
   })
 
-  cardViewport.addEventListener('touchstart', (e) => {
-    if (!e.changedTouches.length) {
+  /* ---------- 手指跟随拖动 ---------- */
+  let drag = null
+
+  const clampIndex = (index) => {
+    const max = getVisibleSlides().length - 1
+    return Math.min(Math.max(0, index), max)
+  }
+
+  const startDrag = (touch) => {
+    drag = {
+      startX: touch.clientX,
+      startY: touch.clientY,
+      dx: 0,
+      axis: null,
+      base: translateForIndex(currentIndex),
+      shown: currentIndex
+    }
+  }
+
+  const moveDrag = (touch) => {
+    if (!drag) {
       return
     }
-    touchStartX = e.changedTouches[0].clientX
+    const dx = touch.clientX - drag.startX
+    const dy = touch.clientY - drag.startY
+    if (drag.axis === null) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) {
+        return
+      }
+      drag.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'
+      if (drag.axis === 'x') {
+        cardTrack.classList.add('no-anim')
+      }
+    }
+    if (drag.axis !== 'x') {
+      return
+    }
+    drag.dx = dx
+    const max = getVisibleSlides().length - 1
+    const atEdge = (currentIndex === 0 && dx > 0) || (currentIndex === max && dx < 0)
+    cardTrack.style.transform = `translateX(${drag.base + (atEdge ? dx * 0.35 : dx)}px)`
+
+    // 哪一张占了屏幕大部分，圆点就亮哪一张
+    const guess = clampIndex(Math.round(currentIndex - dx / slideStep()))
+    if (guess !== drag.shown) {
+      drag.shown = guess
+      applyNavActive(sectionIds[guess])
+    }
+  }
+
+  const endDrag = () => {
+    if (!drag) {
+      return
+    }
+    const { dx, axis } = drag
+    drag = null
+    if (axis !== 'x') {
+      return
+    }
+    // 松手时按“覆盖过半”的规则吸附
+    const target = clampIndex(currentIndex - Math.round(dx / slideStep()))
+    cardTrack.classList.remove('no-anim')
+    goToIndex(target)
+  }
+
+  cardViewport.addEventListener('touchstart', (e) => {
+    if (e.touches.length) {
+      startDrag(e.touches[0])
+    }
   }, { passive: true })
 
-  cardViewport.addEventListener('touchend', (e) => {
-    if (touchStartX === null || !e.changedTouches.length) {
-      return
+  cardViewport.addEventListener('touchmove', (e) => {
+    if (e.touches.length) {
+      moveDrag(e.touches[0])
     }
-    const dx = e.changedTouches[0].clientX - touchStartX
-    touchStartX = null
-    if (Math.abs(dx) < 48) {
-      return
-    }
-    if (dx < 0) {
-      goToIndex(currentIndex + 1)
-    } else {
-      goToIndex(currentIndex - 1)
-    }
+  }, { passive: true })
+
+  cardViewport.addEventListener('touchend', () => {
+    endDrag()
+  }, { passive: true })
+
+  cardViewport.addEventListener('touchcancel', () => {
+    endDrag()
   }, { passive: true })
 
   const findVerticalScrollable = (start, stopAncestor) => {
