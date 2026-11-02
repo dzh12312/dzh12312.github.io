@@ -224,3 +224,16 @@ html.dark button.nav-dot.active {
 button.nav-dot.active .nav-dot__label {
   color: var(--on-primary) !important;
 }
+
+html {
+  -webkit-text-size-adjust: 100%;   /* 横屏不自动放大字号 */
+  -webkit-tap-highlight-color: transparent; /* 去掉点击灰块 */
+}
+
+body {
+  overscroll-behavior-y: contain;   /* 禁掉橡皮筋/下拉刷新 */
+}
+
+.card-shell::-webkit-scrollbar {
+  display: none;                    /* 卡内滚动条隐藏（已有等效 class，这里兜底） */
+}
