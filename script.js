@@ -411,9 +411,17 @@ const syncTransform = () => {
 }
 
 const syncCarouselLayout = () => {
+  // 布局重算（首屏、转屏、窗口缩放）时先关动画，避免卡片自己"滑一下"
+  if (cardTrack) {
+    cardTrack.classList.add('no-anim')
+  }
   syncSlideWidths()
   syncSlideHeights()
   syncTransform()
+  if (cardTrack) {
+    void cardTrack.offsetWidth
+    requestAnimationFrame(() => cardTrack.classList.remove('no-anim'))
+  }
 }
 
 const goToIndex = (index, { updateHash = true } = {}) => {
