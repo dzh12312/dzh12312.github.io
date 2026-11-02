@@ -10,7 +10,8 @@ const slideJumpButtons = document.querySelectorAll('[data-slide-to]:not(.nav-dot
 let sectionIds = ['home', 'skills', 'research', 'competition', 'internship', 'social']
 
 /** 单张幻灯片占视口宽度比例；越小左右邻卡露得越多 */
-const SLIDE_WIDTH_RATIO = 0.78
+const narrowQuery = window.matchMedia('(max-width: 640px)')
+const slideRatio = () => (narrowQuery.matches ? 0.92 : 0.86)
 
 /** 卡片比轨道略矮的像素，留出上下空隙以便 box-shadow 不被裁切 */
 const CARD_VERTICAL_INSET = 12
@@ -359,7 +360,7 @@ const syncSlideWidths = () => {
     return
   }
   const viewW = cardViewport.clientWidth
-  const slidePx = Math.max(200, Math.round(viewW * SLIDE_WIDTH_RATIO))
+  const slidePx = Math.max(200, Math.round(viewW * slideRatio()))
   getVisibleSlides().forEach((el) => {
     el.style.flex = '0 0 auto'
     el.style.width = `${slidePx}px`
@@ -448,6 +449,7 @@ if (cardViewport && cardTrack) {
   window.addEventListener('resize', () => {
     syncCarouselLayout()
   })
+  narrowQuery.addEventListener('change', () => syncCarouselLayout())
 
   if (typeof ResizeObserver !== 'undefined') {
     const carouselResizeObserver = new ResizeObserver(() => {
