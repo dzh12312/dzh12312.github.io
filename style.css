@@ -1,13 +1,10 @@
 /* 配色变量见 theme.css */
-
 * {
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -16,21 +13,17 @@ body {
   color: var(--text);
   line-height: 1.6;
 }
-
 a {
   color: var(--primary);
   text-decoration: none;
 }
-
 a:hover {
   text-decoration: underline;
 }
-
 .container {
   width: min(1080px, 92%);
   margin: 0 auto;
 }
-
 .site-header {
   position: sticky;
   top: 0;
@@ -39,7 +32,6 @@ a:hover {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
-
 .nav-wrap {
   display: flex;
   align-items: center;
@@ -47,13 +39,11 @@ a:hover {
   gap: 1rem;
   padding: 0.85rem 0;
 }
-
 .brand {
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--text);
 }
-
 .nav-list {
   list-style: none;
   display: flex;
@@ -61,23 +51,19 @@ a:hover {
   margin: 0;
   padding: 0;
 }
-
 .nav-list a {
   color: var(--muted);
   font-weight: 600;
 }
-
 .nav-list a.active {
   color: var(--primary);
 }
-
 .hero {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1.25rem;
   padding: 3rem 0 2rem;
 }
-
 .tag {
   display: inline-block;
   margin: 0 0 0.5rem;
@@ -88,12 +74,10 @@ a:hover {
   border-radius: 999px;
   padding: 0.2rem 0.65rem;
 }
-
 .hero h1 {
   margin: 0 0 0.8rem;
   font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
-
 .hero-card,
 .card {
   background: var(--surface);
@@ -101,27 +85,22 @@ a:hover {
   border-radius: 12px;
   box-shadow: var(--shadow);
 }
-
 .hero-card {
   padding: 1rem 1.2rem;
 }
-
 .hero-card h2 {
   margin-top: 0;
   font-size: 1.1rem;
 }
-
 .hero-card ul {
   margin: 0;
   padding-left: 1rem;
 }
-
 .hero-actions {
   display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
 }
-
 .btn {
   display: inline-block;
   background: var(--primary);
@@ -132,85 +111,68 @@ a:hover {
   font-weight: 600;
   cursor: pointer;
 }
-
 .btn:hover {
   background: var(--primary-hover);
   text-decoration: none;
 }
-
 .btn-outline {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
 }
-
 .btn-outline:hover {
   background: var(--outline-hover-bg);
 }
-
 .section {
   padding: 1.4rem 0 0.8rem;
 }
-
 .section h2 {
   margin-bottom: 0.6rem;
   font-size: 1.5rem;
 }
-
 .grid {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-
 .card {
   padding: 1rem;
 }
-
 .card h3 {
   margin-top: 0;
 }
-
 .contact-list {
   list-style: none;
   padding: 0;
   margin: 0.5rem 0 0;
 }
-
 .contact-list li {
   margin: 0.35rem 0;
 }
-
 .site-footer {
   margin-top: 2rem;
   border-top: 1px solid var(--border);
   color: var(--muted);
 }
-
 .site-footer .container {
   padding: 1rem 0 1.6rem;
 }
-
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
   }
-
   .grid {
     grid-template-columns: 1fr 1fr;
   }
 }
-
 @media (max-width: 640px) {
   .nav-wrap {
     flex-wrap: wrap;
   }
-
   .grid {
     grid-template-columns: 1fr;
   }
 }
-
 /* 底部轮播导航激活态（色值 theme.css） */
 button.nav-dot.active {
   background: linear-gradient(135deg, var(--nav-dot-active-from), var(--nav-dot-active-to)) !important;
@@ -218,48 +180,37 @@ button.nav-dot.active {
   color: var(--on-primary) !important;
   box-shadow: var(--nav-dot-active-shadow) !important;
 }
-
 html.dark button.nav-dot.active {
   box-shadow: var(--nav-dot-active-shadow-dark) !important;
 }
-
 button.nav-dot.active .nav-dot__label {
   color: var(--on-primary) !important;
 }
-
 html {
   -webkit-text-size-adjust: 100%;   /* 横屏不自动放大字号 */
   -webkit-tap-highlight-color: transparent; /* 去掉点击灰块 */
 }
-
 body {
   overscroll-behavior-y: contain;   /* 禁掉橡皮筋/下拉刷新 */
 }
-
 .card-shell::-webkit-scrollbar {
   display: none;                    /* 卡内滚动条隐藏（已有等效 class，这里兜底） */
 }
-
-
 /* ===== 紧凑布局：压缩顶部/底部留白，把高度让给卡片 ===== */
-
 /* 顶栏更矮，与卡片之间空隙更小 */
 header > div {
   padding-top: 0.35rem !important;
   padding-bottom: 0.35rem !important;
 }
-
 /* 卡片区的上下内边距 */
 #card-viewport {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
 }
-
 /* 卡片与圆点导航之间的容器 */
 main + div {
   padding-top: 0 !important;
 }
-
 /* 圆点导航整体收紧 */
 #bottom-nav {
   padding-top: 0.25rem !important;
@@ -273,7 +224,6 @@ main + div {
   padding-top: 0.25rem !important;
   padding-bottom: 0.25rem !important;
 }
-
 /* 圆点按钮缩到 36px，图标缩到 16px（约原来的 2/3） */
 .nav-dot {
   height: 2.25rem !important;
@@ -291,7 +241,6 @@ main + div {
   width: auto !important;
   min-width: 2.25rem !important;
 }
-
 /* 页脚：更矮、行距更紧 */
 footer {
   padding-top: 0.35rem !important;
@@ -302,4 +251,13 @@ footer p {
 }
 footer p + p {
   margin-top: 0.1rem !important;
+}
+/* ===== 轮播切换动画：平滑平移 ===== */
+#card-track {
+  transition: transform 450ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+/* 布局重算时禁用动画，首屏/转屏不会自己滑动 */
+#card-track.no-anim {
+  transition: none;
 }
